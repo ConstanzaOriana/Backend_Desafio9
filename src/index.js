@@ -8,6 +8,7 @@ import { createHash } from'./utils/bcrypt.js';
 import errorHandler from './middlewares/errorHandler.js';
 import compression from 'express-compression';
 import cors from 'cors';
+import { addLogger } from './middlewares/logger.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ const corsOptions = {
     optionsSuccessStatus: 200
 }
 
+app.use(addLogger);
 app.use(compression({ brotli: { enabled: true, zlib: {} } }));
 app.use(cors(corsOptions));
 app.use(express.json());

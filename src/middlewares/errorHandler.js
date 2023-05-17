@@ -4,11 +4,11 @@ const errorHandler = (err, req, res, next) => {
 console.log(err)
   switch(err.code) {
     case errorDictionary.REQUIRED_FIELDS_ERROR:
-      console.log({ status: 'error', error: err.name, message: err.message, cause: err.cause, code: err.code });
+      req.logger.error({ status: 'error', error: err.name, message: err.message, cause: err.cause, code: err.code });
       res.redirect('/failregister');
       break;
     case errorDictionary.DUPLICATED_USER_ERROR:
-      console.log({ status: 'error', error: err.name, message: err.message, cause: err.cause, code: err.code });
+      req.logger.error({ status: 'error', error: err.name, message: err.message, cause: err.cause, code: err.code });
       res.redirect('/failregister');
       break;
     default:
